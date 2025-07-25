@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  phi3:
+    build: .
+    container_name: phi3_ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/ollama/.ollama
+    restart: unless-stopped
+    dns:
+      - 8.8.8.8   
+    environment:
+      - OLLAMA_HOST=http://0.0.0.0:11434
+volumes:
+  ollama_data:
