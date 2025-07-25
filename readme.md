@@ -1,4 +1,4 @@
-# 📘 README – API REST d’Ollama (Swagger-Style)
+# 📘 Readme de deploiement de api olama sur docker 
 
 Cette documentation couvre toutes les routes REST exposées par Ollama, utilisables pour gérer, générer, chatter ou analyser des modèles LLM comme Phi-3.
 
