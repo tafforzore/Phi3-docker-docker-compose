@@ -1,16 +1,28 @@
-# 📘 Readme de deploiement de api olama sur docker 
 
-Cette documentation couvre toutes les routes REST exposées par Ollama, utilisables pour gérer, générer, chatter ou analyser des modèles LLM comme Phi-3.
+# 🚀 Déploiement de l'API Ollama avec Docker – Modèle Phi-3
 
-> ⚠️ L’API d’Ollama fonctionne sur `http://localhost:11434` par défaut.
+Bienvenue dans la documentation de déploiement et d’utilisation de l’API **Ollama**, conçue pour interagir avec des modèles LLM tels que **Phi-3**, **LLaMA2**, **Mistral**, etc. Ce guide vous permet de lancer rapidement une instance locale avec Docker, et d'exploiter les routes REST pour la génération de texte, les conversations type ChatGPT et le contrôle serveur.
+
+> 🔗 Dépôt GitHub : [https://github.com/tafforzore/Phi3-docker-docker-compose](https://github.com/tafforzore/Phi3-docker-docker-compose)  
+> 📍 Serveur par défaut : `http://localhost:11434`
 
 ---
 
-## 🔎 Génération de texte
+## 🐳 Déploiement avec Docker
 
-### `POST /api/generate`
+```bash
+git clone https://github.com/tafforzore/Phi3-docker-docker-compose.git
+cd Phi3-docker-docker-compose
+docker compose up -d
+```
 
-Génère une complétion texte simple depuis un prompt.
+---
+
+## 📘 API REST – Routes disponibles
+
+### 🔎 `POST /api/generate` – Génération de texte
+
+Crée une complétion à partir d’un prompt donné.
 
 #### Payload
 
@@ -32,24 +44,22 @@ Génère une complétion texte simple depuis un prompt.
 }
 ```
 
-#### Réponse
+#### Exemple de réponse
 
 ```json
 {
   "model": "phi3",
   "created_at": "2025-07-17T10:21:42.437Z",
-  "response": "La gravitation est...",
+  "response": "La gravitation est la force qui attire deux objets possédant une masse...",
   "done": true
 }
 ```
 
 ---
 
-## 🤖 Chat conversationnel
+### 🤖 `POST /api/chat` – Interaction type ChatGPT
 
-### `POST /api/chat`
-
-Interaction de type ChatGPT avec mémoire.
+Dialogue avec un modèle LLM en conservant un historique.
 
 #### Payload
 
@@ -63,24 +73,23 @@ Interaction de type ChatGPT avec mémoire.
 }
 ```
 
-#### Réponse
+#### Exemple de réponse
 
 ```json
 {
-  "message": {"role": "assistant", "content": "Les symptômes du paludisme sont..."},
+  "message": {
+    "role": "assistant",
+    "content": "Les symptômes du paludisme sont : fièvre, frissons, maux de tête..."
+  },
   "done": true
 }
 ```
 
 ---
 
-## ♥️ Contrôle de santé du serveur
+### ♥️ `GET /` – Ping du serveur
 
-### `GET /`
-
-Simple ping pour vérifier que le serveur est actif.
-
-#### Réponse typique
+Pour tester si le serveur est bien lancé.
 
 ```json
 {"status": "ok"}
@@ -88,29 +97,38 @@ Simple ping pour vérifier que le serveur est actif.
 
 ---
 
-## 🌐 Autres options de déploiement
+## ⚙️ Détails techniques
 
-* Le serveur tourne sur `http://localhost:11434`
-* Toutes les routes acceptent et renvoient du `application/json`
-* Les appels `POST` peuvent être `stream: true` ou `false`
-* Utilise les modèles comme : `phi3`, `llama2`, `mistral`, etc
-
----
-
-## ⚠️ Avertissements
-
-* Aucune authentification par défaut
-* À protéger derrière un reverse proxy avec auth ou un VPN
-* Modèles lourds, attention à la RAM
+- Serveur sur `http://localhost:11434`
+- Format : `application/json`
+- Modèles supportés : `phi3`, `llama2`, `mistral`, etc.
+- Possibilité d’activer le **streaming** (`stream: true`)
+- Pas d’authentification par défaut ➜ ⚠️ Utiliser un proxy ou un VPN
 
 ---
 
-## 📚 Liens utiles
+## 📚 Ressources complémentaires
 
-* Site officiel : [https://ollama.com](https://ollama.com)
-* Modèles disponibles : [https://ollama.com/library](https://ollama.com/library)
-* Code source client : [https://github.com/ollama/ollama](https://github.com/ollama/ollama)
+- 🌍 [Site officiel d’Ollama](https://ollama.com)
+- 📦 [Bibliothèque de modèles](https://ollama.com/library)
+- 💻 [Code source client GitHub](https://github.com/ollama/ollama)
 
 ---
 
-Si tu veux une version Swagger JSON/OpenAPI 3.0 à importer dans Postman ou Swagger UI, je peux te la générer à part ❤️
+## ✨ Bonus : Swagger ou Postman
+
+Tu peux me demander une version OpenAPI 3.0 (Swagger JSON) pour une intégration rapide dans **Swagger UI** ou **Postman**.
+
+---
+
+## 🔍 Optimisation SEO
+
+Ce projet répond à la recherche :  
+**"Déploiement de Phi3 avec Docker"**  
+**"API Ollama modèle Phi-3"**  
+**"Exemple de chat LLM local avec Docker"**
+
+---
+
+👨‍💻 *Maintenu par [@tafforzore](https://github.com/tafforzore)*  
+🛠️ *Améliorations et contributions bienvenues !*
